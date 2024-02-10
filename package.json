@@ -9,13 +9,15 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onCommand:lowtiergod.try"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "lowtiergod.helloWorld",
-        "title": "Hello World"
+        "command": "lowtiergod.try",
+        "title": "Try"
       }
     ]
   },

@@ -28,10 +28,10 @@ const vscode = __importStar(require("vscode"));
 const path = __importStar(require("path"));
 function activate(context) {
     // Registramos un comando que se activará cuando el usuario invoque la extensión
-    let disposable = vscode.commands.registerCommand('extension.showCatTip', () => {
+    let disposable = vscode.commands.registerCommand('lowtiergod.try', () => {
         // Creamos un nuevo panel de webview en la columna activa del editor
         const panel = vscode.window.createWebviewPanel('catTips', // Identificador del panel webview
-        'Cat Tip', // Título del panel webview
+        'Low Tier God Tip', // Título del panel webview
         vscode.ViewColumn.One, // Muestra el panel en la columna actual
         {
             // Habilitamos los scripts en el webview
@@ -58,7 +58,7 @@ function getWebviewContent(imagePath, catTip) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Cat Tip</title>
+        <title>Low Tier God Tip</title>
     </head>
     <body>
         <img src="${imagePath}" style="max-width: 100%;">
