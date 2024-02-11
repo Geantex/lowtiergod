@@ -2,7 +2,9 @@
   "name": "lowtiergod",
   "displayName": "LowTierGod",
   "description": "Low Tier God will motivate you code!",
-  "version": "0.0.1",
+  "version": "0.0.2",
+  "publisher": "lavafrita",
+  "icon": "images/icon.png",
   "engines": {
     "vscode": "^1.86.0"
   },
@@ -10,6 +12,7 @@
     "Other"
   ],
   "activationEvents": [
+    "onStartupFinished",
     "onCommand:lowtiergod.try"
   ],
   "main": "./dist/extension.js",

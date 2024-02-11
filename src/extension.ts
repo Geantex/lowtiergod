@@ -2,11 +2,9 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 
 export function activate(context: vscode.ExtensionContext) {
-    // Registramos un comando que se activará cuando el usuario invoque la extensión
     let disposable = vscode.commands.registerCommand('lowtiergod.try', () => {
-        // Creamos un nuevo panel de webview en la columna activa del editor
         const panel = vscode.window.createWebviewPanel(
-            'catTips', // Identificador del panel webview
+            'lowTierGodTip', // Identificador del panel webview
             'Low Tier God Tip', // Título del panel webview
             vscode.ViewColumn.One, // Muestra el panel en la columna actual
             {
@@ -19,24 +17,34 @@ export function activate(context: vscode.ExtensionContext) {
 
         // Obtenemos el path seguro para la imagen dentro del webview
         const imagePath = panel.webview.asWebviewUri(vscode.Uri.file(
-			path.join(context.extensionPath, 'images', 'LowTierGod.jpg')
-		));
-		
+            path.join(context.extensionPath, 'images', 'LowTierGod.jpg')
+        ));
 
-        // Definimos un consejo de programación
-        const catTip = 'Remember to use your fingers to type!'; // Aquí puedes poner tu consejo
+        // Obtenemos el path seguro para el sonido dentro del webview
+        const soundPath = panel.webview.asWebviewUri(vscode.Uri.file(
+            path.join(context.extensionPath, 'images', 'thunder.mp3')
+        ));
+
+        // Definimos un consejo de programación, puedes personalizar esto a tu gusto
+        const catTip = 'Remember to kill yourself!';
 
         // Establecemos el contenido HTML para el webview
-        panel.webview.html = getWebviewContent(imagePath, catTip);
+        panel.webview.html = getWebviewContent(imagePath, soundPath, catTip);
+    });
+    // Establecer un intervalo para ejecutar automáticamente el comando cada 10 minutos
+    const interval = setInterval(() => {
+        vscode.commands.executeCommand('lowtiergod.try');
+    }, 6000); // 600000 ms equivalen a 10 minutos
+
+    // Asegurarse de limpiar el intervalo cuando la extensión se desactive
+    context.subscriptions.push({
+        dispose: () => clearInterval(interval)
     });
 
-    // Añadimos el comando a la lista de suscripciones de disposición de la extensión
     context.subscriptions.push(disposable);
 }
 
-// Esta función retorna el contenido HTML que queremos mostrar en el webview
-function getWebviewContent(imagePath: vscode.Uri, catTip: string) {
-    // Usamos una literal de plantilla para retornar una cadena de texto que contiene HTML
+function getWebviewContent(imagePath: vscode.Uri, soundPath: vscode.Uri, catTip: string) {
     return `<!DOCTYPE html>
     <html lang="en">
     <head>
@@ -45,11 +53,19 @@ function getWebviewContent(imagePath: vscode.Uri, catTip: string) {
         <title>Low Tier God Tip</title>
     </head>
     <body>
-        <img src="${imagePath}" style="max-width: 100%;">
+        <img src="${imagePath}" style="max-width: 100%; cursor: pointer;" id="playSoundImage">
         <h1>${catTip}</h1>
+        <audio id="sound" src="${soundPath}"></audio>
+        <script>
+            // Añade un manejador de eventos de clic a la imagen
+            document.getElementById('playSoundImage').addEventListener('click', function() {
+                var sound = document.getElementById('sound');
+                // Intenta reproducir el sonido
+                sound.play().catch(error => console.error("Error al intentar reproducir el sonido:", error));
+            });
+        </script>
     </body>
     </html>`;
 }
 
-// Esta función se llama cuando tu extensión se desactiva
 export function deactivate() {}
