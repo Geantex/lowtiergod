@@ -4,7 +4,7 @@ Hello? Hello, hello? Uh, I wanted to record a message for you to help you get se
 
 ## Features
 
-Low Tier God will motivate you after a RANDOM!!! (1 hour, was 10 minutes in 0.0.1) amount of time!
+Low Tier God will motivate you after a RANDOM!!! (1 hour) amount of time!
 
 ## Features
 0.0.1
