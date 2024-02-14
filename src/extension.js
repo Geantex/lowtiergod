@@ -46,10 +46,10 @@ function activate(context) {
         // Establecemos el contenido HTML para el webview
         panel.webview.html = getWebviewContent(imagePath, soundPath, catTip);
     });
-    // Establecer un intervalo para ejecutar automáticamente el comando cada 10 minutos
+    // Establecer un intervalo para ejecutar automáticamente el comando cada 1 hora
     const interval = setInterval(() => {
         vscode.commands.executeCommand('lowtiergod.try');
-    }, 6000); // 600000 ms equivalen a 10 minutos
+    }, 3600000); // 3600000 ms equivalen a 1 hora
     // Asegurarse de limpiar el intervalo cuando la extensión se desactive
     context.subscriptions.push({
         dispose: () => clearInterval(interval)

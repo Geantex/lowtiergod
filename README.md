@@ -4,7 +4,7 @@ Hello? Hello, hello? Uh, I wanted to record a message for you to help you get se
 
 ## Features
 
-Low Tier God will motivate you after a RANDOM!!! (10 minutes) amount of time!
+Low Tier God will motivate you after a RANDOM!!! (1 hour, was 10 minutes in 0.0.1) amount of time!
 
 ## Features
 0.0.1
@@ -13,4 +13,7 @@ Low Tier God will motivate you after a RANDOM!!! (10 minutes) amount of time!
 0.0.2
 -Low Tier God now makes a sound if you click on him
 
+
+0.2.1
+-Fixed error where Low Tier God assaulted you every 10 seconds, now he appears every hour
 **Enjoy!**
